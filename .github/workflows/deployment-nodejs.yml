@@ -36,9 +36,9 @@ jobs:
   job2-deployment-of-nodejs:
 # in first iternation the 2 jobs will run in parallel which is not ideal.
 # with failed test do not want to deploy.
-    needs: test
+    needs: test-job
     #deploy needs test to complete before starting
-    # if multiple jobs put [test1,test2,....]
+    # if multiple jobs put [test1,test2,....]. Note this is the full name of the test job above "test-job"
     runs-on: ubuntu-latest
     steps:
       - name: Get code
