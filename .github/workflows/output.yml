@@ -1,0 +1,12 @@
+name: Output information workflow2
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    #Github creates context metadata that can be accessed in the steps
+    # output information to see what it is
+      - name: Output Github context
+        run: echo "${{ toJSON(github) }}"
+        #output data from github. To access thsi dynamic data must use special syntax
+        # there are contexts, functions and expressions. The above is a function toJSON with 
+        # object github.  It presents the github data in pretty-print JSON format
