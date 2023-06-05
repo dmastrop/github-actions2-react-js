@@ -17,6 +17,6 @@ describe('MainContent', () => {
     const button = screen.getByRole('button');
     await userEvent.click(button);
     //can break the code here by adding in .not.
-    expect(screen.getByTestId('help-area')).not.toBeInTheDocument();
+    expect(screen.getByTestId('help-area')).toBeInTheDocument();
   });
 });
