@@ -1,0 +1,36 @@
+name: Test nodejs
+on: push
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    #this does not run on the repository. This server needs to be told where our code is at (see below)
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+        #with:  with is not needed in our case.
+      # steps to get our source code onto this runner. This is where actions come into play
+      # can be third party custom app to get the code. These are called "actions"
+      # we can build our own actions or get from third party
+      # alternative to do this run shell commands on the runner
+      # github.com/marketplace/actions/checkout
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      # this is to get the nodejs onto the runner (two lines above)
+      # the runner is 22.04 ubuntu which happens to have nodejs already installed
+      # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-software
+      # https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+      # but if it did not, would need to include lines above
+      # search on "github actions install nodejs" to determine how to add this to .yml.
+      # https://github.com/actions/setup-node
+      - name: Install dependencies
+        run: npm ci
+        # could alternatively use npm install
+        # there probably is an action that we could use, but easier to just run this from the command line
+        # of the ubuntu runner
+        # npm will use dependencies that are locked into the package.json file versions
+      - name: Run tests
+        run: npm test
+        # this is the exact same command we ran locally after installing npm  (npm run test)
+
