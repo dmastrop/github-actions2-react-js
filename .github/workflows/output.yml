@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     #Github creates context metadata that can be accessed in the steps
     # output information to see what it is
+    steps:
       - name: Output Github context
         run: echo "${{ toJSON(github) }}"
         #output data from github. To access thsi dynamic data must use special syntax
