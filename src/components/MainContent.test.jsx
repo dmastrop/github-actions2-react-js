@@ -16,8 +16,6 @@ describe('MainContent', () => {
 
     const button = screen.getByRole('button');
     await userEvent.click(button);
-    //intentionally fail the test area of code to test out the github actions script.
-    expect(screen.getByTestId('help-area')).not.toBeInTheDocument();
-    //expect(screen.getByTestId('help-area')).toBeInTheDocument();
+    expect(screen.getByTestId('help-area')).toBeInTheDocument();
   });
 });
